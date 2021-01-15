@@ -1,0 +1,46 @@
+--- atari++/Makefile.atari.orig	2020-03-28 14:10:00.000000000 +0100
++++ atari++/Makefile.atari	2021-01-15 06:15:14.186575705 +0100
+@@ -158,26 +158,22 @@
+ 		[ -s $@ ] || rm -f $@'
+ 
+ %.o: %.cpp %.hpp
+-	@ $(ECHO) "Compiling" $*.cpp
+-	@ $(CXX) $(CFLAGS) $(ADDFLAGS) $*.cpp
++	$(CXX) $(CFLAGS) $(ADDFLAGS) $*.cpp
+ 
+ %.o: %.cpp
+-	@ $(ECHO) "Compiling" $*.cpp
+-	@ $(CXX) $(CFLAGS) $(ADDFLAGS) $*.cpp
++	$(CXX) $(CFLAGS) $(ADDFLAGS) $*.cpp
+ 
+ %.s: %.cpp %.hpp
+-	@ $(ECHO) "Compiling" $*.cpp
+-	@ $(CXX) $(CFLAGS) $(ADDFLAGS) $(OPTIMIZER) $(TOASM) $*.cpp
++	$(CXX) $(CFLAGS) $(ADDFLAGS) $(OPTIMIZER) $(TOASM) $*.cpp
+ 
+ %.s: %.cpp
+-	@ $(ECHO) "Compiling" $*.cpp
+-	@ $(CXX) $(CFLAGS) $(ADDFLAGS) $(OPTIMIZER) $(TOASM) $*.cpp
++	$(CXX) $(CFLAGS) $(ADDFLAGS) $(OPTIMIZER) $(TOASM) $*.cpp
+ 
+ %.asm: %.s
+-	@ c++filt <$*.s >$*.asm
++	c++filt <$*.s >$*.asm
+ 
+ atari++		:	$(OBJECTS)
+-	@ $(LD) $(OBJECTS) $(LDFLAGS) $(LDLIBS) $(ADDLIBS) -o atari++
++	$(LD) $(LDFLAGS) $(OBJECTS) $(LDLIBS) $(ADDLIBS) -o atari++
+ 
+ dox		:	$(SOURCES) $(INCLUDES)
+ 	doxygen Doxyfile
+--- atari++/makefile.in.orig	2020-03-21 18:13:35.000000000 +0100
++++ atari++/makefile.in	2021-01-15 13:00:46.277842226 +0100
+@@ -11,7 +11,7 @@
+ 
+ CXX		= @CXX@
+ MAKEFILE	= makefile
+-CFLAGS		= @CPPFLAGS@ @X_CFLAGS@ @SDL_CFLAGS@ -x c++ -c @WARNING_FLAGS@ #-no-rtti breaks exception handling
++CFLAGS		= @CPPFLAGS@ @CXXFLAGS@ @X_CFLAGS@ @SDL_CFLAGS@ -x c++ -c @WARNING_FLAGS@ #-no-rtti breaks exception handling
+ 
+ OPTIMIZER	= -O3 -DDEBUG_LEVEL=0 -DCHECK_LEVEL=0 @OPTIMIZER_FLAGS@
+ 		  #-fschedule-insns # These give "register spill" errors.
