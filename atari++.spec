@@ -2,7 +2,7 @@ Summary:	Versatile extended emulator of Atari 8-bit machines
 Summary(pl.UTF-8):	Wszechstronny, rozszerzony emulator 8-bitowych komputerów Atari
 Name:		atari++
 Version:	1.83
-Release:	1
+Release:	2
 License:	THOR Public Licence (MPL-like) or GPL
 Group:		Applications/Emulators
 Source0:	http://www.xl-project.com/download/%{name}_%{version}.tar.gz
